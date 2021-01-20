@@ -26,7 +26,6 @@ public class PaymentController {
     @PostMapping("/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
-        log.info("port【+"+port+"】插入结果：" + result);
         if (result > 0) {
             return new CommonResult(200, "port【+"+port+"】--success", result);
         } else {
@@ -36,11 +35,17 @@ public class PaymentController {
     @GetMapping("/payment/get")
     public CommonResult<Payment> getPaymentById(Long id) {
         Payment payment = paymentService.getPaymentById(id);
-        log.info("port【+"+port+"】查询结果：" + payment.toString());
+        if(payment!=null) {
+            log.info("port【+" + port + "】查询结果：" + payment.toString());
+        }
         if(payment!=null) {
             return new CommonResult<>(200, "port【+"+port+"】--success", payment);
         }else {
             return new CommonResult<>(444, "port【+"+port+"】--no data", payment);
         }
+    }
+    @GetMapping("/payment/getPort")
+    public String getPort(){
+        return port;
     }
 }

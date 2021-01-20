@@ -1,0 +1,18 @@
+server:
+  port:
+    80
+spring:
+  application:
+    name: cloud-consumerzk-order
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/db2019?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: lijun896
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181,localhost:2182,localhost:2183
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.ilife.springcloud.entities
