@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -46,6 +47,20 @@ public class PaymentController {
     }
     @GetMapping("/payment/getPort")
     public String getPort(){
+        return port;
+    }
+
+    /**
+     * 测试openfeign的超时控制
+     * @return
+     */
+    @GetMapping("/payment/openfeign/timeout")
+    public String timeout(){
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+
+        }
         return port;
     }
 }
